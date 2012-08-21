@@ -43,7 +43,12 @@ module LetMeIn
 
         data = provider_class.link(auth_hash, current_user)
       end
-      render_or_redirect data.serializable_hash, options || {}
+
+      if return_path = clear_return_path
+        redirect_to return_path
+      else
+        render_or_redirect data.serializable_hash, options || {}
+      end
     end
 
   end
