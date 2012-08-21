@@ -5,22 +5,22 @@ OmniAuth.config.on_failure do |env|
   exception = env['omniauth.error']
   error_type = env['omniauth.error.type']
   strategy = env['omniauth.error.strategy']
-  
+
   new_path = "#{env['SCRIPT_NAME']}#{OmniAuth.config.path_prefix}/failure?message=#{error_type}"
-  
+
   [302, {'Location' => new_path, 'Content-Type'=> 'text/html'}, []]
 end
 
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   if Banters.available?
-    provider :banters, Banters.key, Banters.secret, :name => "banters" 
+    provider :banters, Banters.key, Banters.secret, :name => "banters"
     LetMeIn::Engine.config.account_types << Banters
   end
 
   if Foursquare.available?
-    provider :foursquare, Foursquare.key, Foursquare.secret, :name => "foursquare" 
-    LetMeIn::Engine.config.account_types << Foursquare 
+    provider :foursquare, Foursquare.key, Foursquare.secret, :name => "foursquare"
+    LetMeIn::Engine.config.account_types << Foursquare
   end
 
   if Instagram.available?
@@ -29,23 +29,28 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   end
 
   if Lastfm.available?
-    provider :lastfm, Lastfm.key, Lastfm.secret, :name => "lastfm" 
+    provider :lastfm, Lastfm.key, Lastfm.secret, :name => "lastfm"
     LetMeIn::Engine.config.account_types << Lastfm
   end
 
   if Tumblr.available?
-    provider :tumblr, Tumblr.key, Tumblr.secret, :name => "tumblr" 
-    LetMeIn::Engine.config.account_types << Tumblr 
+    provider :tumblr, Tumblr.key, Tumblr.secret, :name => "tumblr"
+    LetMeIn::Engine.config.account_types << Tumblr
   end
-  
+
   if Twitter.available?
     provider :twitter, Twitter.key, Twitter.secret, :name => "twitter"
     LetMeIn::Engine.config.account_types << Twitter
   end
 
-  provider :identity, :fields => [:username, :email], :model => User, 
-    :on_failed_registration => lambda { |env| 
-      AuthController.action(:failure).call(env) 
+  if Parse.available?
+    provider :parse, {:application_id => Parse.key, :rest_api_key => Parse.secret}
+    LetMeIn::Engine.config.account_types << Parse
+  end
+
+  provider :identity, :fields => [:username, :email], :model => User,
+    :on_failed_registration => lambda { |env|
+      AuthController.action(:failure).call(env)
     }
 end
 

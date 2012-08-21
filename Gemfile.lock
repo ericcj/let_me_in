@@ -137,6 +137,9 @@ GEM
     omniauth-oauth2 (1.0.2)
       oauth2 (~> 0.6.0)
       omniauth (~> 1.0)
+    omniauth-parse (0.0.1)
+      faraday
+      multi_json
     omniauth-tumblr (1.0)
       omniauth-oauth (~> 1.0)
     omniauth-twitter (0.0.8)
@@ -236,6 +239,7 @@ DEPENDENCIES
   omniauth-identity
   omniauth-instagram
   omniauth-lastfm
+  omniauth-parse
   omniauth-tumblr
   omniauth-twitter (= 0.0.8)
   pg

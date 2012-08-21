@@ -23,6 +23,7 @@ gem 'omniauth-banters', :git => "git://github.com/becarella/omniauth-banters.git
 gem 'omniauth-foursquare'
 gem 'omniauth-tumblr'
 gem 'omniauth-lastfm'
+gem 'omniauth-parse'
 
 gem 'handlebars_wax', :git => 'git@github.com:goggin13/handlebars_wax.git'
 

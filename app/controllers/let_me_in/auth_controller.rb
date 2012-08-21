@@ -1,8 +1,8 @@
 module LetMeIn
   class AuthController < ApplicationController
-    
+
     before_filter :authenticate, :except => [:failure, :callback]
-    
+
     def connect
       redirect_to "/auth/#{params[:provider].downcase}"
     end
@@ -35,10 +35,16 @@ module LetMeIn
       else
         provider_class = LetMeIn::Engine.config.account_types
                                         .select{|p| p.name.downcase =~ /#{params[:provider].downcase}/i}[0]
+
+        if !signed_in? && provider_class.respond_to?(:find_or_create_user_by_auth_hash)
+          user = provider_class.find_or_create_user_by_auth_hash(auth_hash, params[:password])
+          sign_in(user) if user
+        end
+
         data = provider_class.link(auth_hash, current_user)
       end
       render_or_redirect data.serializable_hash, options || {}
     end
-    
+
   end
 end
