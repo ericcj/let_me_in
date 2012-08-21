@@ -43,9 +43,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     LetMeIn::Engine.config.account_types << Twitter
   end
 
-  if Parse.available?
-    provider :parse, {:application_id => Parse.key, :rest_api_key => Parse.secret}
-    LetMeIn::Engine.config.account_types << Parse
+  if ParseCom.available?
+    provider :parse, {:application_id => ParseCom.key, :rest_api_key => ParseCom.secret}
+    LetMeIn::Engine.config.account_types << ParseCom
   end
 
   provider :identity, :fields => [:username, :email], :model => User,

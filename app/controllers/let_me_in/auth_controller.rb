@@ -34,7 +34,7 @@ module LetMeIn
         sign_in(data) if data
       else
         provider_class = LetMeIn::Engine.config.account_types
-                                        .select{|p| p.name.downcase =~ /#{params[:provider].downcase}/i}[0]
+                                        .select{|p| p.name.downcase.sub(/parsecom/, 'parse') =~ /#{params[:provider].downcase}/i}[0]
 
         if !signed_in? && provider_class.respond_to?(:find_or_create_user_by_auth_hash)
           user = provider_class.find_or_create_user_by_auth_hash(auth_hash, params[:password])
