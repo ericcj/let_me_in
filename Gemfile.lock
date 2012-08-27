@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: git@github.com:ericcj/handlebars_wax.git
-  revision: 6e8ad678bc22eb187557ba56552dffdd3cb93613
+  revision: d5d93c1db7e3011e0fdaef8fde9a04a8fe2badb2
   specs:
     handlebars_wax (0.0.1)
       handlebars
