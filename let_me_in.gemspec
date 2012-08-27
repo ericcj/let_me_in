@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Modules and controllers for user identification"
   s.description = "Base controllers and modules for allowing users to signin/up with username/password or 3rd party via omniauth"
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails"
