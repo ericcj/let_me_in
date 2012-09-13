@@ -25,7 +25,7 @@ gem 'omniauth-tumblr'
 gem 'omniauth-lastfm'
 gem 'omniauth-parse'
 
-gem 'handlebars_wax', :git => 'git@github.com:goggin13/handlebars_wax.git'
+gem 'handlebars_wax', :git => 'git@github.com:ericcj/handlebars_wax.git', :branch => 'goggin13'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'
